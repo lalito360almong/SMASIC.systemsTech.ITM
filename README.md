@@ -1,1 +1,1 @@
-smasictech_ITM
+SMASICtech_ITM
