@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMASIC - Sistema de Mitigación Ambiental y Seguridad Industrial Centralizada</title>
+    <style>
+        :root {
+            --bg-principal: #f8fafc;
+            --bg-tarjeta: #ffffff;
+            --azul-primario: #0284c7;
+            --azul-oscuro: #0f172a;
+            --verde-ambiental: #10b981;
+            --naranja-industrial: #f97316;
+            --texto-principal: #1e293b;
+            --texto-mutado: #64748b;
+            --borde: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-principal);
+            color: var(--texto-principal);
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--borde);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .marca-texto {
+            display: flex;
+            align-items: center;
+        }
+
+        .marca-texto h1 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--azul-oscuro);
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+
+        .marca-texto span {
+            font-size: 11px;
+            color: var(--azul-primario);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        nav a {
+            color: var(--texto-mutado);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            margin-left: 25px;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--azul-primario);
+        }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .seccion-introductoria {
+            background: #ffffff;
+            border: 1px solid var(--borde);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .seccion-introductoria h2 {
+            font-size: 28px;
+            color: var(--azul-oscuro);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .seccion-introductoria p {
+            color: var(--texto-mutado);
+            font-size: 15px;
+            max-width: 900px;
+        }
+
+        section {
+            background-color: var(--bg-tarjeta);
+            border: 1px solid var(--borde);
+            border-radius: 8px;
+            padding: 35px;
+            margin-bottom: 40px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        h3 {
+            font-size: 20px;
+            color: var(--azul-oscuro);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--borde);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .seccion-introductoria p, section > p {
+            margin-bottom: 20px;
+            font-size: 14.5px;
+            color: var(--texto-mutado);
+        }
+
+        .tabla-contenedor {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid var(--borde);
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            text-align: left;
+            background: #ffffff;
+        }
+
+        th, td {
+            padding: 16px;
+            border-bottom: 1px solid var(--borde);
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--azul-oscuro);
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-azul {
+            background-color: #e0f2fe;
+            color: #0369a1;
+        }
+
+        .badge-verde {
+            background-color: #dcfce7;
+            color: #15803d;
+        }
+
+        .mencion-ley {
+            font-weight: 700;
+            color: var(--azul-oscuro);
+            display: block;
+        }
+
+        .sub-ley {
+            font-size: 11px;
+            color: var(--texto-mutado);
+            display: block;
+        }
+
+        .resaltado-total {
+            background-color: #f0fdf4 !important;
+            font-weight: bold;
+            color: #166534;
+        }
+
+        .resaltado-total td {
+            border-top: 2px solid var(--verde-ambiental);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--borde);
+            color: var(--texto-mutado);
+            font-size: 13px;
+            margin-top: 60px;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="marca-texto">
+                <div>
+                    <h1>SMASIC</h1>
+                    <span>Sistema de Mitigación Ambiental y Seguridad Industrial Centralizada</span>
+                </div>
+            </div>
+            <nav>
+                <a href="#convergencia">Convergencia Técnica</a>
+                <a href="#legal">Marco Legal</a>
+                <a href="#financiero">Flujo Financiero</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="contenedor">
+        
+        <div class="seccion-introductoria">
+            <h2>Portal de Viabilidad e Integración de Proyectos</h2>
+            <p>Este sistema unifica los protocolos de mitigación de riesgo laboral, telemetría ambiental automática en la República Dominicana y el análisis de factibilidad presupuestaria para implementaciones públicas y privadas.</p>
+        </div>
+
+        <!-- SECCIÓN 1: CONVERGENCIA TÉCNICA -->
+        <section id="convergencia">
+            <h3>⚙️ 1. Matriz de Convergencia Técnica y Automatización</h3>
+            <p>Lógica operativa de los sensores y actuadores encargados de ejecutar acciones automáticas en tiempo real ante eventos críticos.</p>
+            
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Dispositivo / Sensor</th>
+                            <th style="width: 15%;">Clasificación</th>
+                            <th style="width: 60%;">Lógica de Automatización e Impacto Operativo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>Sensor de Flama / Fuego</b></td>
+                            <td><span class="badge badge-azul">Industrial</span></td>
+                            <td>Al detectar radiación infrarroja de fuego, corta el flujo de gas mediante electroválvula, activa extractores de aire y desenergiza imanes de puertas de evacuación.</td>
+                        </tr>
+                        <tr>
+                            <td><b>Sensor de Presencia / Infrarrojo</b></td>
+                            <td><span class="badge badge-azul">Industrial</span></td>
+                            <td>Monitorea perímetros peligrosos. Si un operador ingresa a una zona restringida de maquinaria en movimiento, el sistema apaga los motores de forma instantánea.</td>
+                        </tr>
+                        <tr>
+                            <td><b>Sensor de Sismos (Módulo MPU6050)</b></td>
+                            <td><span class="badge badge-azul">Industrial</span></td>
+                            <td>Evalúa la aceleración terrestre. Al superar el umbral de riesgo, interrumpe el suministro eléctrico general del edificio para evitar incendios provocados por cortocircuitos.</td>
+                        </tr>
+                        <tr>
+                            <td><b>Sensor de Humedad y Temperatura</b></td>
+                            <td><span class="badge badge-verde">Ambiental</span></td>
+                            <td>Mide el nivel de sequedad y calor en áreas vulnerables. Si calcula un estrés hídrico extremo, genera una alarma de riesgo inminente de incendios forestales.</td>
+                        </tr>
+                        <tr>
+                            <td><b>Sensor de Nivel de Agua (Ultrasonido)</b></td>
+                            <td><span class="badge badge-verde">Ambiental</span></td>
+                            <td>Calcula la distancia al caudal. Ante aumentos drásticos en ríos o playas, dispara sirenas comunitarias de evacuación y despacha una alerta con coordenadas GPS a Defensa Civil.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: MARCO LEGAL DOMINICANO -->
+        <section id="legal">
+            <h3>⚖️ 2. Marco Legal de Obligatoriedad (República Dominicana)</h3>
+            <p>Garantiza que el proyecto cumpla rigurosamente con las legislaciones y normativas vigentes en el país, fundamentando la necesidad de su adquisición.</p>
+            
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Regulación / Ley Nacional</th>
+                            <th style="width: 35%;">Exigencia Legislativa</th>
+                            <th style="width: 40%;">Mecanismo de Acción de SMASIC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span class="mencion-ley">Reglamento 522-06</span>
+                                <span class="sub-ley">Seguridad e Higiene en el Trabajo</span>
+                            </td>
+                            <td>Exige sistemas eficaces de prevención de riesgos y vías de evacuación seguras y libres en plantas de manufactura.</td>
+                            <td>Permite el desbloqueo autónomo de puertas y el apagado inmediato de maquinaria de peligro ante emergencias.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="mencion-ley">Código de Trabajo (Ley 16-92)</span>
+                                <span class="sub-ley">Artículos de Salud y Seguridad</span>
+                            </td>
+                            <td>Establece que las empresas son civilmente responsables de proveer ambientes laborales seguros y libres de peligros inminentes.</td>
+                            <td>Lleva un registro inteligente de accesos que permite conocer exactamente el número de personas dentro del edificio durante una evacuación.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="mencion-ley">Ley 64-00</span>
+                                <span class="sub-ley">General de Medio Ambiente</span>
+                            </td>
+                            <td>Prohíbe los vertidos contaminantes fuera de rangos neutros y demanda la protección contra quemas o incendios forestales.</td>
+                            <td>Bloquea tuberías de descarga industrial mediante servomotores al detectar anomalías químicas y monitorea zonas verdes.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="mencion-ley">Ley 147-02</span>
+                                <span class="sub-ley">Gestión de Riesgos de la R.D.</span>
+                            </td>
+                            <td>Obliga a estructurar redes de alerta temprana para proteger a las poblaciones de inundaciones y fenómenos climáticos destructivos.</td>
+                            <td>Estaciones autónomas alimentadas por celdas solares emiten señales de alarma directa en poblados y transmiten datos a rescatistas.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="mencion-ley">Ley 153-98</span>
+                                <span class="sub-ley">General de Telecomunicaciones / INDOTEL</span>
+                            </td>
+                            <td>Regula el uso del espacio radioeléctrico en el país prohibiendo interferencias en frecuencias del Estado.</td>
+                            <td>Los nodos de transmisión operan estrictamente en frecuencias libres bajo límites de potencia permitidos por el INDOTEL.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: CORRIDA FINANCIERA -->
+        <section id="financiero">
+            <h3>📊 3. Corrida Financiera de Ingresos Proyectados (Año 1)</h3>
+            <p>Análisis financiero estimado partiendo de una inserción comercial inicial de <b>5 Plantas Industriales Privadas</b> y <b>20 Nodos Municipales de Prevención</b> (Valores expresados en Pesos Dominicanos RD$).</p>
+            
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Línea de Negocio</th>
+                            <th style="width: 25%;">Ingreso Inicial Fijo (CAPEX)</th>
+                            <th style="width: 25%;">Suscripción / Mantenimiento Anual (OPEX)</th>
+                            <th style="width: 25%;">Fórmula de Proyección (Año 1)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <b>Sector Industrial Privado</b><br>
+                                <span style="color: var(--azul-primario); font-size: 12px; font-weight: bold;">(5 Empresas)</span>
+                            </td>
+                            <td>
+                                <b>RD$ 131,100.00</b> por planta.<br>
+                                <small style="color: var(--texto-mutado);">Incluye diseño, montaje físico de sensores e instalación de hardware.</small>
+                            </td>
+                            <td>
+                                <b>RD$ 57,600.00</b> anuales.<br>
+                                <small style="color: var(--texto-mutado);">Monitoreo continuo en la nube y alertas de incidentes vía API.</small>
+                            </td>
+                            <td>
+                                (5 × RD$ 131,100) + (5 × RD$ 57,600)<br>
+                                • Fijo: RD$ 655,500.00<br>
+                                • Recurrente: RD$ 288,000.00<br>
+                                <b>Subtotal: RD$ 943,500.00</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Sector Público / Ambiental</b><br>
+                                <span style="color: var(--verde-ambiental); font-size: 12px; font-weight: bold;">(20 Nodos)</span>
+                            </td>
+                            <td>
+                                <b>RD$ 47,100.00</b> por nodo.<br>
+                                <small style="color: var(--texto-mutado);">Cubre kit solar autónomo, microcontrolador y sensores de intemperie.</small>
+                            </td>
+                            <td>
+                                <b>RD$ 36,000.00</b> anuales.<br>
+                                <small style="color: var(--texto-mutado);">Calibración física periódica y actualización de software.</small>
+                            </td>
+                            <td>
+                                (20 × RD$ 47,100) + (20 × RD$ 36,000)<br>
+                                • Fijo: RD$ 942,000.00<br>
+                                • Recurrente: RD$ 720,000.00<br>
+                                <b>Subtotal: RD$ 1,662,000.00</b>
+                            </td>
+                        </tr>
+                        <tr class="resaltado-total">
+                            <td colspan="3" style="text-align: right; text-transform: uppercase;">Ingresos Brutos Estimados Totales (Año 1):</td>
+                            <td style="font-size: 16px;">RD$ 2,605,500.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>SMASIC &copy; 2026 - Proyecto de Innovación Tecnológica Aplicada. República Dominicana.</p>
+    </footer>
+
+</body>
+</html>
